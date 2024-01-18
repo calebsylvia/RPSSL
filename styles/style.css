@@ -1,0 +1,78 @@
+/* Universal */
+
+@font-face {
+    font-family: 'Nico Moji';
+    src: url('fonts/NicoMoji-Regular.ttf');
+}
+
+body{
+    background-image: url(../assets/gameBGfr.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: #ECC034;
+    font-family: 'Nico Moji', serif;
+}
+
+
+
+/* Title Page */
+
+
+.home{
+    width: 80vw;
+    height: 70vh;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+.titleA{
+    text-decoration: none;
+    text-align: center;
+}
+
+.title{
+    font-size: 120px;
+    color:#ECC034;
+}
+
+.cont{
+    color:#ECC034;
+    padding-top: 10px;
+}
+
+/* Mode Page */
+
+/* .modePick input{
+    display: none;
+} */
+
+
+/* Game Page */
+
+.playerCard{
+    border-radius: 10px;
+}
+
+.choices button{
+    width: 225px;
+    height: 50px;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    border: none;
+    font-size: 30px;
+}
+
+#turn{
+    color: white;
+}
+
+
+/* End Page */
+
+.endGame{
+    border: 5px solid #ECC034;
+    width: 30vw;
+    height: 45vh;
+    border-radius: 15px;
+    transform: translate(0, 50%);
+}
