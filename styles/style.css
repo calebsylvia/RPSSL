@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Nico Moji';
-    src: url('fonts/NicoMoji-Regular.ttf');
+    src: url('/fonts/NicoMoji-Regular.ttf');
 }
 
 body{
@@ -37,15 +37,77 @@ body{
 
 .cont{
     color:#ECC034;
-    padding-top: 10px;
+    padding-top: 30px;
+}
+
+@media screen and (max-width: 1024px){
+    .title{
+        font-size: 80px;
+    }
+
+    .home{
+        padding-top: 150px;
+    }
 }
 
 /* Mode Page */
 
-/* .modePick input{
-    display: none;
-} */
+.modePick{
+    text-align: center;
+    font-size: 55px;
+    padding-top: 50px;
+    width: 100vw !important;
+}
 
+.submitBtn{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    bottom: 30px;
+    right: 35px;
+}
+
+input[type="radio"]{
+    appearance: none;
+    margin: 0;
+    font: inherit;
+    color: #ECC034;
+    width: 10em;
+    height: 1.5em;
+    border: 0.15em solid #ECC034;
+    border-radius: 15px;
+}
+
+input[type="radio"]:checked{
+    background-color: #605EA3;
+}
+
+label span {
+    position: relative;
+    left: 10px;
+    top: -110px;
+    font-size: 45px;
+}
+
+.padMe{
+    padding-top: 180px;
+}
+
+.pushDown{
+    padding-top: 100px;
+}
+
+@media screen and (max-width: 1024px){
+    .modePick{
+        font-size: 35px;
+    }
+
+    label span{
+        font-size: 25px;
+        top: -70px;
+        text-wrap: nowrap;
+    }
+}
 
 /* Game Page */
 
@@ -54,21 +116,51 @@ body{
 }
 
 .choices button{
-    width: 225px;
-    height: 50px;
+    width: 325px;
+    height: 70px;
     background-color: #d9d9d9;
     border-radius: 10px;
     border: none;
-    font-size: 30px;
+    font-size: 45px;
+}
+
+.choices{
+    width: 75%;
+    padding-top: 25px;
+}
+
+#menuBtn{
+    background-color: transparent;
+    border: none;
+    color:white;
+    font-size: 35px;
 }
 
 #turn{
     color: white;
 }
 
+#outcome{
+    color: white;
+}
+
+#boX{
+    color: white;
+}
+
+.scoreSpace{
+    padding-top: 20px;
+}
+
 .gameplay{
     z-index: 0;
     position: absolute;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.gameplay p{
+    font-size: 35px;
 }
 
 .rules{
@@ -100,14 +192,65 @@ body{
     margin-bottom: 0 !important;
 }
 
+.menu{
+    z-index: 1;
+    position: absolute;
+    background-color: black;
+    width: 25vw;
+    border: 5px solid #ECC034;
+    border-radius: 15px;
+    padding: 40px 20px;
+    top: 30%;
+    left: 38%;
+}
+
+.menuContent a{
+    text-decoration: none;
+    color: #ECC034;
+    border: 3px solid #ECC034;
+    border-radius: 10px;
+    font-size: 45px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.menuContent button{
+    background-color: transparent;
+    color: #ECC034;
+    font-size: 45px;
+    border: 3px solid #ECC034;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+
 
 
 /* End Page */
 
 .endGame{
     border: 5px solid #ECC034;
-    width: 30vw;
-    height: 45vh;
+    width: 35vw;
+    height: 50vh;
     border-radius: 15px;
     transform: translate(0, 50%);
+    font-size: 65px;
+    text-align: center
+}
+
+#wL{
+    padding-bottom: 30px;
+}
+
+.endGame a{
+    text-decoration: none;
+    color: #ECC034;
+    border: 5px solid #ECC034;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 70px;
+    width: 95%;
 }

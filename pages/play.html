@@ -11,7 +11,7 @@
 
     <div class="container-fluid rules justify-content-center" id="rules" style="display: block;">
         <button id="xBtn" onclick="closeMenu()">
-            <img src="/assets/X.png" alt="White X icon">
+            <img class="img-fluid" src="/assets/X.png" alt="White X icon">
         </button>
         <div class="container rulesContent">
         <p>HOW TO PLAY</p>
@@ -19,17 +19,31 @@
         </div>
     </div>
 
-    <div class="container gameplay" id="gameplay" style="display: none;">
+    <div class="container-fluid menu" id="menu" style="display: none">
+        <div class="container menuContent">
+            <div class="row">
+            <a href="/index.html">HOME</a>
+            <a href="./mode.html">RESTART</a>
+            <button onclick="closeMenu()">
+                BACK
+            </button>
+        </div>
+        </div>
+    </div>
+
+    <div class="container-fluid gameplay" id="gameplay" style="display: none;">
         <div class="row">
             <div class="col">
                 <p>PLAYER 1</p>
             </div>
             <div class="col">
-                <p>MENU</p>
+                <button id="menuBtn" onclick="openMenu()">
+                    Menu
+                </button>
                 <p id="boX">BEST OF X</p>
             </div>
             <div class="col">
-                <p id="opponent">PLAYER 2</p>
+                <p id="opp">PLAYER 2</p>
             </div>
         </div>
         <div class="row">
@@ -43,13 +57,14 @@
                 <p id="score2">0</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row scoreSpace">
             <div class="col">
                 <img class="playerCard" src="/assets/1.png" alt="Player 1 Card" height="400px">
             </div>
-            <div class="col">
-                <img class="turnArrow" id="turnArrow" src="/assets/ArrowFatLeft.png" alt="Player Turn Arrow" width="90px">
+            <div class="col my-auto">
                 <p id="turn">PLAYER 1'S TURN</p>
+                <img class="turnArrow" id="turnArrow" src="/assets/ArrowFatLeft.png" alt="Player Turn Arrow" width="120px">
+                <p id="outcome">PLAYER 1 WINS</p>
             </div>
             <div class="col">
                 <img class="playerCard" src="/assets/2.png" alt="Player 2 Card" height="400px">
