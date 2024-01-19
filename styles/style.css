@@ -66,6 +66,41 @@ body{
     color: white;
 }
 
+.gameplay{
+    z-index: 0;
+    position: absolute;
+}
+
+.rules{
+    background-color: rgba(96, 94, 163, 0.5);
+    z-index: 1;
+    position: relative;
+    width: 40vw;
+    transform: translate(0, 35%);
+    border-radius: 15px;
+}
+
+.rules button{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    width: 75px;
+    left: 530px;
+    top: 15px;
+}
+
+.rulesContent{
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+
+.rulesContent p{
+    padding-top: 20px;
+    margin-bottom: 0 !important;
+}
+
+
 
 /* End Page */
 
