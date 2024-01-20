@@ -221,10 +221,7 @@ function startGame() {
     }
   });
 
-  if (mode === "player") {
-    while (score1 <= winScore || score2 <= winScore) {}
-  } else {
-  }
+
 
   function whoWin() {
     if (player1Choice === player2Choice) {
@@ -358,6 +355,12 @@ function startGame() {
       player2Choice = "";
     }
   }
+
+  if(score1 >= winScore){
+    localStorage.setItem("winner", JSON.stringify("PLAYER 1"));
+  }else{
+    localStorage.setItem("winner", JSON.stringify("PLAYER 2"));
+  }
 }
 
 function openMenu() {
@@ -393,4 +396,9 @@ function displayWinner() {
   } else {
     wL.innerText = "CPU WINS!";
   }
+}
+
+if(window.location.href.includes("/end.html")){
+  displayWinner();
+  localStorage.clear();
 }
