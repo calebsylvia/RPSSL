@@ -10,7 +10,7 @@
 <body>
 
     <div class="container-fluid rules justify-content-center" id="rules" style="display: block;">
-        <button id="xBtn" onclick="closeMenu()">
+        <button id="xBtn" onclick="closeRules()">
             <img class="img-fluid" src="/assets/X.png" alt="White X icon">
         </button>
         <div class="container rulesContent">
@@ -63,7 +63,7 @@
             </div>
             <div class="col my-auto">
                 <p id="turn">PLAYER 1'S TURN</p>
-                <img class="turnArrow" id="turnArrow" src="/assets/ArrowFatLeft.png" alt="Player Turn Arrow" width="120px">
+                <img class="turnArrow p1turn" id="turnArrow" src="/assets/ArrowFatLeft.png" alt="Player Turn Arrow" width="120px">
                 <p id="outcome">PLAYER 1 WINS</p>
             </div>
             <div class="col">
@@ -71,19 +71,21 @@
             </div>
         </div>
         <div class="row choices">
-            <div class="col">
+            <div class="col btnPad">
                 <button id="rock">ROCK</button>
             </div>
-            <div class="col">
+            <div class="col btnPad">
                 <button id="paper">PAPER</button>
             </div>
-            <div class="col">
+        </div>
+        <div class="row choices">
+            <div class="col btnPad">
                 <button id="scissors">SCISSORS</button>
             </div>
-            <div class="col">
+            <div class="col btnPad">
                 <button id="spock">SPOCK</button>
             </div>
-            <div class="col">
+            <div class="col btnPad">
                 <button id="lizard">LIZARD</button>
             </div>
         </div>

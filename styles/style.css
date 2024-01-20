@@ -127,6 +127,11 @@ label span {
 .choices{
     width: 75%;
     padding-top: 25px;
+    margin: 0 auto;
+}
+
+.btnPad{
+    padding: 25px;
 }
 
 #menuBtn{
@@ -142,6 +147,7 @@ label span {
 
 #outcome{
     color: white;
+    padding-top: 25px;
 }
 
 #boX{
@@ -177,7 +183,7 @@ label span {
     border: none;
     position: absolute;
     width: 75px;
-    left: 530px;
+    right: 10px;
     top: 15px;
 }
 
@@ -225,7 +231,27 @@ label span {
 }
 
 
+.p1turn{
+    transform: scaleX(1);
+    animation: bounce 1s infinite linear;
+}
 
+.p2turn{
+    transform: scaleX(-1);
+    animation: bounce 1s infinite linear;
+}
+
+@keyframes bounce{
+    0%{
+        transform: translateX(20px);
+    }
+    50%{
+        transform: translateX(0px);
+    }
+    100%{
+        transform: translateX(20px);
+    }
+}
 
 
 /* End Page */
