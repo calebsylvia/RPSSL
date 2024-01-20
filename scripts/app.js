@@ -30,53 +30,12 @@ let winScore = 0;
 let playerTurn = 0;
 let mode = "";
 
-let computerChoice = "";
 let choice = "";
 let player1Choice = "";
+let p1Choice = true;
+let p2Choice = false;
 let player2Choice = "";
-let btnPress = false;
-
-rock.addEventListener("click", function (e) {
-  choice = "rock";
-  btnPress = true;
-  getComputerChoice();
-  console.log(computerChoice);
-});
-
-paper.addEventListener("click", function (e) {
-  choice = "paper";
-  btnPress= true;
-  getComputerChoice();
-  console.log(computerChoice);
-});
-
-scissors.addEventListener("click", function (e) {
-  choice = "scissors";
-  btnPress = true;
-  getComputerChoice();
-  console.log(computerChoice);
-});
-
-spock.addEventListener("click", function (e) {
-  choice = "spock";
-  btnPress = true;
-  getComputerChoice();
-  console.log(computerChoice);
-});
-
-lizard.addEventListener("click", function (e) {
-  choice = "lizard";
-  btnPress = true;
-  getComputerChoice();
-});
-
-async function getComputerChoice(){
-  const prom = await fetch("https://rpslsapi.azurewebsites.net/RPSLS");
-  const data = await prom.text();
-  computerChoice = data;
-}
-
-getComputerChoice();
+let endGame = false;
 
 function checkMode() {
   if (bo1.checked == true) {
@@ -119,164 +78,301 @@ function startGame() {
   } else {
     mode = "player";
   }
-}
 
+  async function getComputerChoice() {
+    const prom = await fetch("https://rpslsapi.azurewebsites.net/RPSLS");
+    const data = await prom.text();
+    player2Choice = data.toLowerCase();
+  }
+  getComputerChoice();
 
-
-function whoWinCPU(player1Choice, computerChoice) {
-  while (score1 <= winScore || score2 <= winScore) {
-    if (player1Choice === computerChoice) {
-      outcome.innerText = "TIE!";
-    } else if (
-      player1Choice == "rock" && (computerChoice == "scissors" ||
-      computerChoice == "lizard")
-    ) {
-      score1++;
-      outcome.innerText = "PLAYER 1 WINS";
-    } else if (
-      player1Choice == "paper" && (computerChoice == "rock" ||
-      computerChoice == "spock")
-    ) {
-      score1++;
-      outcome.innerText = "PLAYER 1 WINS";
-    } else if (
-        player1Choice == 'scissors' && (computerChoice == 'paper' || computerChoice == 'lizard')
-    ) {
-        score1++;
-        outcome.innerText = "PLAYER 1 WINS";
-    } else if (
-        player1Choice == 'spock' && (computerChoice == 'scissors' || computerChoice == 'rock')
-    ) {
-        score1++;
-        outcome.innerText = "PLAYER 1 WINS";
-    } else if (
-        player1Choice == 'lizard' && (computerChoice == 'paper' || computerChoice == 'spock')
-    ) {
-        score1++;
-        outcome.innerText = "PLAYER 1 WINS";
-    } else if (
-        computerChoice == "rock" && (player1Choice == "scissors" ||
-        player1Choice == "lizard")
-      ) {
-        score2++;
-        outcome.innerText = "CPU WINS";
-      } else if (
-        computerChoice == "paper" && (player1Choice == "rock" ||
-        player1Choice == "spock")
-      ) {
-        score2++;
-        outcome.innerText = "CPU WINS";
-      } else if (
-          computerChoice == 'scissors' && (player1Choice == 'paper' || player1Choice == 'lizard')
-      ) {
-          score2++;
-          outcome.innerText = "CPU WINS";
-      } else if (
-          computerChoice == 'spock' && (player1Choice == 'scissors' || player1Choice == 'rock')
-      ) {
-          score2++;
-          outcome.innerText = "CPU WINS";
-      } else if (
-          computerChoice == 'lizard' && (player1Choice == 'paper' || player1Choice == 'spock')
-      ) {
-          score2++;
-          outcome.innerText = "CPU WINS";
+  rock.addEventListener("click", (e) => {
+    if (mode === "player") {
+      if (p1Choice) {
+        player1Choice = "rock";
+        console.log(player1Choice);
+        p2Choice = true;
+        p1Choice = false;
+        turnArrow.classList.remove("p1turn");
+        turnArrow.classList.add("p2turn");
+        turn.innerText = "PLAYER 1'S TURN";
       } else {
-        console.log(error)
+        player2Choice = "rock";
+        console.log(player2Choice);
+        p1Choice = true;
+        p2Choice = false;
+        turnArrow.classList.remove("p2turn");
+        turnArrow.classList.add("p1turn");
+        turn.innerText = "PLAYER 2'S TURN";
       }
-  }
-}
-
-function whoWin2P(player1Choice, player2Choice) {
-  while (score1 <= winScore || score2 <= winScore) {
-      if (player1Choice === player2Choice) {
-        outcome.innerText = "TIE!";
-      } else if (
-        player1Choice == "rock" && (player2Choice == "scissors" ||
-        player2Choice == "lizard")
-      ) {
-        score1++;
-        outcome.innerText = "PLAYER 1 WINS ROUND";
-      } else if (
-        player1Choice == "paper" && (player2Choice == "rock" ||
-        player2Choice == "spock")
-      ) {
-        score1++;
-        outcome.innerText = "PLAYER 1 WINS ROUND";
-      } else if (
-          player1Choice == 'scissors' && (player2Choice == 'paper' || player2Choice == 'lizard')
-      ) {
-          score1++;
-          outcome.innerText = "PLAYER 1 WINS ROUND";
-      } else if (
-          player1Choice == 'spock' && (player2Choice == 'scissors' || player2Choice == 'rock')
-      ) {
-          score1++;
-          outcome.innerText = "PLAYER 1 WINS ROUND";
-      } else if (
-          player1Choice == 'lizard' && (player2Choice == 'paper' || player2Choice == 'spock')
-      ) {
-          score1++;
-          outcome.innerText = "PLAYER 1 WINS ROUND";
-      } else if (
-          player2Choice == "rock" && (player1Choice == "scissors" ||
-          player1Choice == "lizard")
-        ) {
-          score2++;
-          outcome.innerText = "PLAYER 2 WINS ROUND";
-        } else if (
-          player2Choice == "paper" && (player1Choice == "rock" ||
-          player1Choice == "spock")
-        ) {
-          score2++;
-          outcome.innerText = "PLAYER 2 WINS ROUND";
-        } else if (
-            player2Choice == 'scissors' && (player1Choice == 'paper' || player1Choice == 'lizard')
-        ) {
-            score2++;
-            outcome.innerText = "PLAYER 2 WINS ROUND";
-        } else if (
-            player2Choice == 'spock' && (player1Choice == 'scissors' || player1Choice == 'rock')
-        ) {
-            score2++;
-            outcome.innerText = "PLAYER 2 WINS ROUND";
-        } else if (
-            player2Choice == 'lizard' && (player1Choice == 'paper' || player1Choice == 'spock')
-        ) {
-            score2++;
-            outcome.innerText = "PLAYER 2 WINS ROUND";
-        } else {
-          console.log(error)
-        }
+      whoWin();
+    } else if (mode === "cpu") {
+      player1Choice = "rock";
+      getComputerChoice();
+      whoWin();
     }
-}
+  });
 
-function whoTurn(){
-  if(btnPress && turnArrow.classList.contains("p1turn")){
-    turnArrow.classList.add("p2turn");
-    turnArrow.classList.remove("p1turn");
-    turn.innerText = "PLAYER 2'S TURN";
-  }else{
-    turnArrow.classList.add("p1turn");
-    turnArrow.classList.remove("p2turn");
-    turn.innerText = "PLAYER 1'S TURN";
+  paper.addEventListener("click", (e) => {
+    if (mode === "player") {
+      if (p1Choice) {
+        player1Choice = "paper";
+        console.log(player1Choice);
+        p2Choice = true;
+        p1Choice = false;
+        turnArrow.classList.remove("p1turn");
+        turnArrow.classList.add("p2turn");
+        turn.innerText = "PLAYER 1'S TURN";
+      } else {
+        player2Choice = "paper";
+        console.log(player2Choice);
+        p1Choice = true;
+        p2Choice = false;
+        turnArrow.classList.remove("p2turn");
+        turnArrow.classList.add("p1turn");
+        turn.innerText = "PLAYER 2'S TURN";
+      }
+      whoWin();
+    } else if (mode === "cpu") {
+      player1Choice = "paper";
+      getComputerChoice();
+      whoWin();
+    }
+  });
+
+  scissors.addEventListener("click", (e) => {
+    if (mode === "player") {
+      if (p1Choice) {
+        player1Choice = "scissors";
+        console.log(player1Choice);
+        p2Choice = true;
+        p1Choice = false;
+        turnArrow.classList.remove("p1turn");
+        turnArrow.classList.add("p2turn");
+        turn.innerText = "PLAYER 1'S TURN";
+      } else {
+        player2Choice = "scissors";
+        console.log(player2Choice);
+        p1Choice = true;
+        p2Choice = false;
+        turnArrow.classList.remove("p2turn");
+        turnArrow.classList.add("p1turn");
+        turn.innerText = "PLAYER 2'S TURN";
+      }
+      whoWin();
+    } else if (mode === "cpu") {
+      player1Choice = "scissors";
+      getComputerChoice();
+      whoWin();
+    }
+  });
+
+  spock.addEventListener("click", (e) => {
+    if (mode === "player") {
+      if (p1Choice) {
+        player1Choice = "spock";
+        console.log(player1Choice);
+        p2Choice = true;
+        p1Choice = false;
+        turnArrow.classList.remove("p1turn");
+        turnArrow.classList.add("p2turn");
+        turn.innerText = "PLAYER 1'S TURN";
+      } else {
+        player2Choice = "spock";
+        console.log(player2Choice);
+        p1Choice = true;
+        p2Choice = false;
+        turnArrow.classList.remove("p2turn");
+        turnArrow.classList.add("p1turn");
+        turn.innerText = "PLAYER 2'S TURN";
+      }
+      whoWin();
+    } else if (mode === "cpu") {
+      player1Choice = "spock";
+      getComputerChoice();
+      whoWin();
+    }
+  });
+
+  lizard.addEventListener("click", (e) => {
+    if (mode === "player") {
+      if (p1Choice) {
+        player1Choice = "lizard";
+        console.log(player1Choice);
+        p2Choice = true;
+        p1Choice = false;
+        turnArrow.classList.remove("p1turn");
+        turnArrow.classList.add("p2turn");
+        turn.innerText = "PLAYER 1'S TURN";
+      } else {
+        player2Choice = "lizard";
+        console.log(player2Choice);
+        p1Choice = true;
+        p2Choice = false;
+        turnArrow.classList.remove("p2turn");
+        turnArrow.classList.add("p1turn");
+        turn.innerText = "PLAYER 2'S TURN";
+      }
+      whoWin();
+    } else if (mode === "cpu") {
+      player1Choice = "lizard";
+      getComputerChoice();
+      whoWin();
+    }
+  });
+
+  if (mode === "player") {
+    while (score1 <= winScore || score2 <= winScore) {}
+  } else {
+  }
+
+  function whoWin() {
+    if (player1Choice === player2Choice) {
+      outcome.innerText = "TIE!";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player1Choice == "rock" && player2Choice == "scissors") {
+      ply1Score++;
+      score1.innerText = ply1Score;
+      outcome.innerText = "PLAYER 1 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player1Choice == "rock" && player2Choice == "lizard") {
+      ply1Score++;
+      score1.innerText = ply1Score;
+      outcome.innerText = "PLAYER 1 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player1Choice == "paper" && player2Choice == "rock") {
+      score1++;
+      score1.innerText = ply1Score;
+      outcome.innerText = "PLAYER 1 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player1Choice == "paper" && player2Choice == "spock") {
+      score1++;
+      score1.innerText = ply1Score;
+      outcome.innerText = "PLAYER 1 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player1Choice == "scissors" && player2Choice == "lizard") {
+      score1++;
+      score1.innerText = ply1Score;
+      outcome.innerText = "PLAYER 1 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player1Choice == "scissors" && player2Choice == "paper") {
+      score1++;
+      score1.innerText = ply1Score;
+      outcome.innerText = "PLAYER 1 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player1Choice == "spock" && player2Choice == "scissors") {
+      score1++;
+      score1.innerText = ply1Score;
+      outcome.innerText = "PLAYER 1 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player1Choice == "spock" && player2Choice == "rock") {
+      score1++;
+      score1.innerText = ply1Score;
+      outcome.innerText = "PLAYER 1 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } 
+    else if (player1Choice == "lizard" && player2Choice == "paper") {
+      score1++;
+      score1.innerText = ply1Score;
+      outcome.innerText = "PLAYER 1 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player1Choice == "lizard" && player2Choice == "spock") {
+      score1++;
+      score1.innerText = ply1Score;
+      outcome.innerText = "PLAYER 1 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } 
+    else if (player2Choice == "rock" && player1Choice == "scissors") {
+      score2++;
+      score2.innerText = ply2Score;
+      outcome.innerText = "PLAYER 2 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player2Choice == "rock" && player1Choice == "lizard") {
+      score2++;
+      score2.innerText = ply2Score;
+      outcome.innerText = "PLAYER 2 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    }else if (player2Choice == "paper" && player1Choice == "spock") {
+      score2++;
+      score2.innerText = ply2Score;
+      outcome.innerText = "PLAYER 2 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    }
+    else if (player2Choice == "paper" && player1Choice == "rock") {
+      score2++;
+      score2.innerText = ply2Score;
+      outcome.innerText = "PLAYER 2 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player2Choice == "scissors" && player1Choice == "lizard") {
+      score2++;
+      score2.innerText = ply2Score;
+      outcome.innerText = "PLAYER 2 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } 
+    else if (player2Choice == "scissors" && player1Choice == "paper") {
+      score2++;
+      score2.innerText = ply2Score;
+      outcome.innerText = "PLAYER 2 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player2Choice == "spock" && player1Choice == "rock") {
+      score2++;
+      score2.innerText = ply2Score;
+      outcome.innerText = "PLAYER 2 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    }
+    else if (player2Choice == "spock" && player1Choice == "scissors") {
+      score2++;
+      score2.innerText = ply2Score;
+      outcome.innerText = "PLAYER 2 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    } else if (player2Choice == "lizard" && player1Choice == "paper") {
+      score2++;
+      score2.innerText = ply2Score;
+      outcome.innerText = "PLAYER 2 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    }else if (player2Choice == "lizard" && player1Choice == "spock") {
+      score2++;
+      score2.innerText = ply2Score;
+      outcome.innerText = "PLAYER 2 WINS ROUND";
+      player1Choice = "";
+      player2Choice = "";
+    }
   }
 }
 
-function openMenu(){
-  if(gameplay.style.display === "block"){
+function openMenu() {
+  if (gameplay.style.display === "block") {
     menu.style.display = "block";
     gameplay.style.display = "none";
   }
 }
 
-function closeMenu(){
-  if(menu.style.display === "block"){
-  menu.style.display = "none";
-  gameplay.style.display = "block";
+function closeMenu() {
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+    gameplay.style.display = "block";
   }
 }
-
 
 function closeRules() {
   if (gameplay.style.display == "none") {
@@ -289,13 +385,12 @@ function closeRules() {
   startGame();
 }
 
-
-function displayWinner(){
-  if(JSON.parse(localStorage.getItem("winner")) === "PLAYER 1"){
-    wL.innerText = "PLAYER 1 WINS!"
-  }else if(JSON.parse(localStorage.getItem("winner")) === "PLAYER 2"){
-    wL.innerText = "PLAYER 2 WINS!"
-  }else{
-    wL.innerText = "CPU WINS!"
+function displayWinner() {
+  if (JSON.parse(localStorage.getItem("winner")) === "PLAYER 1") {
+    wL.innerText = "PLAYER 1 WINS!";
+  } else if (JSON.parse(localStorage.getItem("winner")) === "PLAYER 2") {
+    wL.innerText = "PLAYER 2 WINS!";
+  } else {
+    wL.innerText = "CPU WINS!";
   }
 }
